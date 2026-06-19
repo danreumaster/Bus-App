@@ -10,6 +10,7 @@ from routes.vehicle import router as vehicle_router
 from routes.shift import router as shift_router
 from routes.shift_user import router as shift_user_router
 from routes.schedule import router as schedule_router
+from routes.conductor import router as conducter_router
 app= FastAPI()
 
 app.include_router(auth_router)
@@ -21,3 +22,4 @@ app.include_router(shift_router)
 app.include_router(shift_user_router)
 app.include_router(schedule_router)
 app.include_router(ticket_router)
+app.include_router(conducter_router)

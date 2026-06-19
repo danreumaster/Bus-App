@@ -11,3 +11,4 @@ async def create_shift_user(shift_user:ShiftUserInDB,db:AsyncSession=Depends(get
     db.add(new_shift_user)
     await db.commit()
     await db.refresh(new_shift_user)
+

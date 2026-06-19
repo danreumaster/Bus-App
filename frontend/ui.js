@@ -1,0 +1,9 @@
+export const signInContainer=document.getElementById("sign-in-container");
+export const signInForm=document.getElementById("sign-in-form");
+export const signInNameContainer=document.getElementById("sign-in-name-container");
+export const signInNameContainer=document.getElementById("sign-in-password-container");
+export const signInNameContainer=document.getElementById("sign-in-role-container");
+export const signInNameField=document.getElementById("sign-in-name-field");
+export const signInPasswordField=document.getElementById("sign-in-password-field");
+export const signInRoleField=document.getElementById("sign-in-role-field");
+export const signInSubmitBtn=document.getElementById("sign-in-submit");

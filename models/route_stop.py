@@ -11,6 +11,7 @@ class RouteStop(Base):
     route_id = Column(Integer,ForeignKey("routes.id",ondelete="CASCADE"))
     stop_id = Column(Integer,ForeignKey("stops.id",ondelete="CASCADE"))
     stop_order = Column(Integer)
+    distance_from_start = Column(Integer)
 
     route=relationship("Route",back_populates="stops")
     stop=relationship("Stop",back_populates="routes")

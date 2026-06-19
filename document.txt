@@ -1,0 +1,28 @@
+# 13/06/26
+added a column to route_stop table.As there are many routes containing the same stops
+we need a table to calculate the distance relative to starting og the route.So route_stop 
+table seems appropriate.
+->added column to distance_from_start to models.route_stop
+->updated schemas.route_stop to accomodate distance_from_start
+->updated the test data for route_stop
+->alembic migration initiated
+
+added distance column to ticket.I have let this field for the conductors phone to calculate.
+Because calculating 1000s of tickets/trips distance traveled a second by backend feels to 
+expensive.
+
+planing on building jwt ,Oauth2. App getting too big
+if i push it for later enpoint protection gets harder due to many endpoints to protect
+one by one
+#15/06/26
+->created a normal def function to generate access token,not async because no io tasks here
+#16/06/26
+created an protected endpint ,access token generation and user registration endpoints
+#17/06/26
+->remove yesterdays and implemented on my own without help
+->got some erros on CryptContext,so had to check that,its a big code so i didnt memorize that
+#18/06/26
+->decide to create a conductor only workflow
+#19/06/26
+->builded a conductor/dashboard endpoint retreives a person shift details ,schedule and routestop details
+->added new columns fare,user_id,mode_of_transaction columns to tickets

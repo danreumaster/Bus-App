@@ -1,13 +1,14 @@
-from pydantic import BaseModel
+from pydantic import BaseModel,ConfigDict
 from models.user import RoleEnum
 
 
 class UserOut(BaseModel):
+    model_config=ConfigDict(from_attributes=True)
     name : str
-    role : RoleEnum
+    role : RoleEnum|None
     
 
 class UserInDB(UserOut):
-    passwod : str
+    password : str
 
 

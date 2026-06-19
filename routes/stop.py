@@ -5,7 +5,7 @@ from fastapi import APIRouter,Depends
 
 router=APIRouter(prefix="/stop",tags=["Route Stop"])
 
-@router.post("/")
+@router.post("")
 async def create_stop(stop:StopInDB,db:AsyncSession=Depends(get_db)):
     new_stop=Stop(name=stop.name)
     db.add(new_stop)

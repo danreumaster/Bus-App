@@ -2,6 +2,8 @@ from models.schedule import *
 from fastapi import FastAPI,APIRouter,Depends
 from database import AsyncSession,get_db
 from schemas.schedule import ScheduleInDB
+from services.shift_service import get_shift_of_user
+from services.schedule_service import get_schedule_of_shift
 
 router=APIRouter(prefix="/schedule",tags=["Schedule"])
 
@@ -12,3 +14,5 @@ async def create_schedule(schedule:ScheduleInDB,db:AsyncSession=Depends(get_db))
     await db.commit()
     await db.refresh(new_schedule)
     return new_schedule
+
+
