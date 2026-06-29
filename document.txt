@@ -26,3 +26,32 @@ created an protected endpint ,access token generation and user registration endp
 #19/06/26
 ->builded a conductor/dashboard endpoint retreives a person shift details ,schedule and routestop details
 ->added new columns fare,user_id,mode_of_transaction columns to tickets
+->updated ticket creation endpoit it now verifies if schedule route,start or end stops are valid and calculates
+  distance and fare and return the created ticket
+#22/06/6
+->added new columns to schedule
+->spend 2 hours deciding whether i need to split schedule table or not
+  decided against it.My reasoning is i will fix when its needed
+
+tomorrows task:
+->need to modify ticket creation endpoint,validate incomming tickets against
+  start and end time of a schedule
+->schedule creation endpoint ,add checks against each field of the schedule
+  to ensure correct records are inserted
+->start designing ui for schedule creation,ticket booking ,and login endpoints.
+
+#28/06/26
+built a entire conductor workflow which includes
+  - verifying u are a staff (protected endpoint)
+  - checking if u belong in a shift (for now only one person in a shift).Automatically
+    created if none
+  - entering a city and getting bus routes through those cities
+  - choosing a route
+  - starting a trip (creates a new schedule)
+  - ending a trip
+  - booking a ticket
+
+#29/06/26
+Learning flutter to build application for conductor.Alerady learned html,css and js.
+-> completed basic widgets,text,button,scafold,padding and containers.
+-> 

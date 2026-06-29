@@ -7,7 +7,7 @@ from schemas.user import *
 
 router = APIRouter(prefix = "/auth",tags=["Auth"])
 @router.post("/register")
-async def register_user(form_data:UserInDB,db:AsyncSession=Depends(get_db)):
+async def register_user(form_data:UserIn,db:AsyncSession=Depends(get_db)):
     user = await get_user(form_data.name,db)
     if not (user is None):
         raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="user alerady exists")
@@ -30,5 +30,5 @@ async def login_for_access_token(form_data:Annotated[OAuth2PasswordRequestForm,D
     jwt_token=create_access_token({"sub":user.name})
     return jwt_token
 @router.get("/me")
-async def get_user_details(current_user:Annotated[UserInDB,Depends(get_current_user)]):
+async def get_user_details(current_user:Annotated[UserOut,Depends(get_current_user)]):
     return current_user

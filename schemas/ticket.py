@@ -1,7 +1,10 @@
 from pydantic import BaseModel
-
+from models.ticket import ModeEnum
 class TicketInDB(BaseModel):
-    schedule_id : int
+    user_id :int
     start_stop_id : int
     end_stop_id : int
-    distance : int
+    mode_of_transaction : ModeEnum
+
+class TicketOut(BaseModel):
+    pass

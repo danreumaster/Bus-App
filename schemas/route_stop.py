@@ -8,7 +8,6 @@ class RouteStopInDB(BaseModel):
 
 class RouteStopOut(BaseModel):
     model_config=ConfigDict(from_attributes=True)
-    
     name : str
     stop_order : int
     distance_from_start : int

@@ -17,3 +17,8 @@ async def get_route_stop_details(id:int,db:AsyncSession):
     data = await db.execute(stmt)
     data =  data.scalar_one_or_none()
     return data
+
+async def get_bus_routes_of_city(city:str,db:AsyncSession):
+    stmt=select(Route).where(Route.name.like("%"+city+"%"))
+    route=await db.execute(stmt)
+    return route.scalars().all()

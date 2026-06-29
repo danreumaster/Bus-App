@@ -20,5 +20,16 @@ async def get_shift_of_user(user_id : int,db:AsyncSession):
     data=await db.execute(stmt)
     data=data.scalar_one_or_none()
     if data is None:
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND,detail="no shift for this user")
+        return None
     return data
+
+async def create_user_shift(user_id:int,db:AsyncSession):
+    new_shift=Shift()
+    db.add(new_shift)
+    await db.commit()
+    await db.refresh(new_shift)
+    new_shift_user=ShiftUser(shift_id=new_shift.id,user_id=user_id)
+    db.add(new_shift_user)
+    await db.commit()
+    await db.refresh(new_shift_user)
+    return new_shift

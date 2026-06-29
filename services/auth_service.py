@@ -72,6 +72,7 @@ async def get_current_user(token:Annotated[str,Depends(oauth2_scheme)],db:AsyncS
         payload=jwt.decode(token,SECRET,ALGORITHM)
 
         name=payload.get('sub')
+
         if name is None:
             raise credential_exception
     except JWTError:
@@ -79,7 +80,14 @@ async def get_current_user(token:Annotated[str,Depends(oauth2_scheme)],db:AsyncS
     user=await get_user(name,db)
     if user is None:
         raise credential_exception
-    return UserInDB.model_validate(user)
+    return UserOut.model_validate(user)
+
+def required_role(allowed_role:str):
+    def role_checker(user:Annotated[UserOut,Depends(get_current_user)]):
+        if user.role != allowed_role:
+            raise HTTPException(status_code=status.HTTP_403_FORBIDDEN,detail="Unauthorized")
+        return user
+    return role_checker
 
 async def get_user_id(name:str,db:AsyncSession)->int:
     stmt=select(User.id).where(User.name==name)
